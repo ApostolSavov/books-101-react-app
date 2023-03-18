@@ -1,0 +1,85 @@
+@import 'style-constants.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    padding: 0 2.5rem 0;
+    background-color: $primary-color-dark;
+    color: white;
+
+    &__logo-container {
+        height: 100%;
+        padding: 0 0.5rem 0;
+        transition: 0.3s;
+    }
+
+    &__logo-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        gap: 1rem;
+        transition: 0.3s;
+
+        &:hover {
+            gap: 0rem;
+            color: $primary-color-darkest;
+        }
+    }
+
+    &__logo {
+        height: 90%;
+        margin-bottom: 0.5rem;
+
+        &-text {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items: center;
+            font-weight: bold;
+            font-size: large;
+            height: 100%;
+
+            &-2 {
+                color: $primary-color-normal;
+            }
+        }
+    }
+
+    &__nav {
+        height: 100%;
+
+        &-container {
+            height: 100%;
+            padding: 0 0.5rem 0;
+        }
+
+        &-list {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            gap: 1.5rem;
+            height: 100%;
+        }
+
+        &-item {
+            height: 100%;
+
+        }
+
+        &-link {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            transition: 0.3s;
+
+            &:hover {
+                color: $primary-color-darkest;
+                font-weight: bold;
+            }
+        }
+    }
+}

@@ -1,0 +1,11 @@
+@import 'style-constants.scss';
+
+.main-wrapper {
+    width: 100%;
+    min-height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $primary-color-lightest;
+    padding: 5rem;
+}

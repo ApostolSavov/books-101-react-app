@@ -1,0 +1,30 @@
+@import 'style-constants.scss';
+
+.pagination-page-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: $primary-color-normal;
+    transition: 0.3s;
+
+    &.icon {
+        font-weight: bold;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: $primary-color-dark;
+        color: $primary-color-lightest;
+    }
+
+    &-divider {
+        height: 3rem;
+        width: 1rem;
+        border: none;
+    }
+}

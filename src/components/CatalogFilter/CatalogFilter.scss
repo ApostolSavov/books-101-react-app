@@ -1,0 +1,51 @@
+@import 'style-constants.scss';
+
+.catalog-filter {
+
+    &-wrapper {
+        width: 20rem;
+        padding: 1rem;
+        background-color: $primary-color-normal;
+    }
+
+    &-input {
+        appearance: none;
+        padding: 1rem;
+        border: none;
+        min-height: 4rem;
+        width: 100%;
+        transition: 0.3s;
+        font-family: inherit;
+        font-size: large;
+
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            display: none;
+        }
+
+
+        &:focus {
+            box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.5) inset;
+            font-size: large;
+        }
+
+        &::placeholder {
+            font-family: inherit;
+            font-size: large;
+            text-align: left;
+            vertical-align: bottom;
+            transition: 0.3s;
+        }
+
+        &:focus::placeholder {
+            color: transparent;
+        }
+    }
+
+    &-label {
+        height: 100%;
+        display: none;
+    }
+}

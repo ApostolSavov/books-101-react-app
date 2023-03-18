@@ -1,0 +1,1 @@
+# Placeholder for softuni react course project
