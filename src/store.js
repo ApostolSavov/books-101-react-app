@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { reducer as booksReducer } from './slices/books';
 
 const reducer = {
-    books: booksReducer
+    books: booksReducer,
 };
 
 const store = configureStore({

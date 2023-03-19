@@ -1,0 +1,28 @@
+@import 'style-constants.scss';
+
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+
+    &-submit-btn {
+        background-color: $primary-color-normal;
+        padding: 10px;
+        align-self: end;
+        color: white;
+    }
+
+    &-input {
+        appearance: none;
+        padding: 1rem;
+        border: none;
+        min-height: 4rem;
+    }
+}

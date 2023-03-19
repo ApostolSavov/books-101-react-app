@@ -43,8 +43,6 @@ function App() {
 
           <Route exact path="/register" element={<Register />} />
 
-          <Route exact path="/logout" element={<Navigate to="/catalog" replace />} />
-
           <Route exact path="/profile" element={<Profile />} />
 
           <Route exact path="/profile/readlist" element={<ReadList />} />

@@ -4,8 +4,8 @@ const getAll = () => {
     return http.get('/books');
 };
 
-const BookService = {
+const bookService = {
     getAll
 };
 
-export default BookService;
+export default bookService;

@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import BookService from "../services/bookService";
+import bookService from "../services/bookService";
 
 export const getAllBooks = createAsyncThunk(
     'books/getAllBooks',
     () => {
-        return BookService.getAll()
+        return bookService.getAll()
             .then(({ data }) => data)
             .catch(({ response }) => response);
     });

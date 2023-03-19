@@ -1,11 +1,24 @@
 import { Link } from "react-router-dom";
 import MenuBook from "../../assets/MenuBook.svg";
+import userService from "../../services/userService";
+import useIsAuth from "../../utils/hooks/useIsAuth";
+import useLocalStorage from "../../utils/hooks/useLocalStorage";
+import { useNavigate } from 'react-router-dom';
 
 import "./Header.scss";
 
-const isAuth = false;
 
 const Header = () => {
+    const navigate = useNavigate();
+
+    useLocalStorage();
+    const isAuth = useIsAuth();
+
+    const onLogout = () => {
+        userService.logout();
+        navigate('/catalog');
+    };
+
     return (
         <header className="header">
             <div className="header__logo-container">
@@ -30,10 +43,10 @@ const Header = () => {
                         {isAuth && (
                             <>
                                 <li className="header__nav-item">
-                                    <Link className="header__nav-link" to="/login">My Books</Link>
+                                    <Link className="header__nav-link" to="/profile">My Books</Link>
                                 </li>
                                 <li className="header__nav-item">
-                                    <Link className="header__nav-link" to="/register">Logout</Link>
+                                    <Link className="header__nav-link" onClick={onLogout} to="/catalog">Logout</Link>
                                 </li>
                             </>
                         )}
