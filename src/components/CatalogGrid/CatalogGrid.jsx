@@ -5,17 +5,15 @@ import { useSearchParams } from "react-router-dom";
 import "./CatalogGrid.scss";
 import Spinner from "../../utils/Spinner/Spinner";
 import { filterHandler } from "../../utils/helpers/filterHandler";
-import { sortHandler } from "../../utils/helpers/sortHandler";
 import CatalogCard from "../CatalogCard/CatalogCard";
 import CatalogPagination from "../CatalogPagination/CatalogPagination";
-import { getAllBooks, cancelLoading, modifyCollection } from "../../slices/books";
+import { getAllBooks, modifyCollection } from "../../slices/books";
 
 const CatalogGrid = () => {
     const { collection, mutableCollection, isLoaded, error } = useSelector(({ books }) => books);
     const [queryParams] = useSearchParams();
     const page = queryParams.get('page') || 1;
 
-    const controller = new AbortController();
     const dispatch = useDispatch();
 
     const booksByPage = (collection, page, limit = 20) => {
@@ -28,23 +26,14 @@ const CatalogGrid = () => {
         if (queryParams.get('filter')) {
             modifiedCollection = collection.filter((book) => filterHandler(book, queryParams.get('filter')));
         }
-        if (queryParams.get('sort')) {
-            //todo
-            modifiedCollection.sort(sortHandler);
-        }
 
         return modifiedCollection;
     };
 
     useEffect(() => {
         dispatch(
-            getAllBooks(controller)
+            getAllBooks()
         );
-
-        return () => {
-            dispatch(cancelLoading());
-            controller.abort();
-        };
     }, []);
 
     useEffect(() => {

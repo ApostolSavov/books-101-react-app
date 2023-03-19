@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./CatalogCard.scss";
 
 const CatalogCard = ({ id, title, author, imgSrc }) => {
@@ -6,7 +7,9 @@ const CatalogCard = ({ id, title, author, imgSrc }) => {
         <div data-id={id} className="catalog-card">
 
             <div className="catalog-card__img-wrapper">
-                <img className="catalog-card__img" src={imgSrc} alt="book-photo" />
+                <Link to={`/catalog/${id}`}>
+                    <img className="catalog-card__img" src={imgSrc} alt="book-photo" />
+                </Link>
             </div>
 
             <div className="catalog-card__text-wrapper">

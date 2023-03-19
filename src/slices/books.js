@@ -3,8 +3,8 @@ import BookService from "../services/bookService";
 
 export const getAllBooks = createAsyncThunk(
     'books/getAllBooks',
-    (abortController) => {
-        return BookService.getAll(abortController)
+    () => {
+        return BookService.getAll()
             .then(({ data }) => data)
             .catch(({ response }) => response);
     });
@@ -18,9 +18,6 @@ const booksSlice = createSlice({
         modifyCollection: (state, action) => {
             state.mutableCollection = [...action.payload];
         },
-        cancelLoading: (state) => {
-            state = initialState;
-        }
     },
     extraReducers: {
         [getAllBooks.fulfilled]: (state, action) => {
@@ -35,5 +32,5 @@ const booksSlice = createSlice({
     }
 });
 
-export const { cancelLoading, modifyCollection } = booksSlice.actions;
+export const { modifyCollection } = booksSlice.actions;
 export const { reducer } = booksSlice;

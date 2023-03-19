@@ -1,7 +1,7 @@
 import http from '../utils/requestUtils/common';
 
-const getAll = (abortController) => {
-    return http.get('/books', { signal: abortController.signal });
+const getAll = () => {
+    return http.get('/books');
 };
 
 const BookService = {
