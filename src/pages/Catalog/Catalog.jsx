@@ -1,9 +1,9 @@
-import "./CatalogPage.scss";
+import "./Catalog.scss";
 import CatalogGrid from "../../components/CatalogGrid/CatalogGrid";
 import CatalogFilter from "../../components/CatalogFilter/CatalogFilter";
 import CatalogSort from "../../components/CatalogSort/CatalogSort";
 
-const CatalogPage = () => {
+const Catalog = () => {
     return (
         <div className="catalog-page">
             <div className="catalog-options-ribbon">
@@ -15,4 +15,4 @@ const CatalogPage = () => {
     );
 };
 
-export default CatalogPage;
+export default Catalog;
