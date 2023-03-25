@@ -8,3 +8,6 @@ Reviews (view, add, edit, delete) - relation with books and users collection
 
 # Static collection:
 Books (view)
+
+Landing page:
+![](./app%20wip.png)
