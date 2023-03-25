@@ -8,6 +8,8 @@ import { filterHandler } from "../../utils/helpers/filterHandler";
 import CatalogCard from "../CatalogCard/CatalogCard";
 import CatalogPagination from "../CatalogPagination/CatalogPagination";
 import { getAllBooks, modifyCollection } from "../../slices/books";
+import itemsByPage from "utils/helpers/itemsByPage";
+
 
 const CatalogGrid = () => {
     const { collection, mutableCollection, isLoaded, error } = useSelector(({ books }) => books);
@@ -15,10 +17,6 @@ const CatalogGrid = () => {
     const page = queryParams.get('page') || 1;
 
     const dispatch = useDispatch();
-
-    const booksByPage = (collection, page, limit = 20) => {
-        return collection.slice((page - 1) * limit, page * limit + 1);
-    };
 
     const collectionModifier = (collection) => {
         let modifiedCollection = [...collection];
@@ -32,6 +30,7 @@ const CatalogGrid = () => {
 
     useEffect(() => {
         dispatch(
+            // @ts-ignore
             getAllBooks()
         );
     }, []);
@@ -60,8 +59,11 @@ const CatalogGrid = () => {
 
             {!error && isLoaded && (
                 <>
+                    <div className="pagination-ribbon">
+                        <CatalogPagination collectionLength={mutableCollection.length} />
+                    </div>
                     <div className="catalog-grid">
-                        {booksByPage(mutableCollection, page).map(({ id, title, author, imageLink }) => (
+                        {itemsByPage(mutableCollection, page).map(({ id, title, author, imageLink }) => (
                             <CatalogCard
                                 key={id}
                                 id={id}

@@ -1,0 +1,15 @@
+.add-review-cta {
+    width: fit-content;
+    height: fit-content;
+    padding: 2rem;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-btn-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}

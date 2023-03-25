@@ -23,35 +23,38 @@ function App() {
   return (
     <Router>
       <Header />
+
       <div className="main-wrapper">
         <Routes>
-          <Route exact path="/" element={<Navigate to="/catalog" replace />} />
+          <Route path="/" element={<Navigate to="/catalog" replace />} />
 
-          <Route exact path="/catalog" element={<Catalog />} />
+          <Route path="/reviews" element={<Reviews />} />
 
-          <Route exact path="/catalog/:id" element={<BookDetails />} />
+          <Route path="/reviews/:id" element={<ReviewDetails />} />
 
-          <Route exact path="/catalog/:id/reviews" element={<Reviews />} />
+          <Route path="/reviews/:id/edit" element={<EditReview />} />
 
-          <Route exact path="/catalog/:id/reviews/:id" element={<ReviewDetails />} />
+          <Route path="/catalog" element={<Catalog />} />
 
-          <Route exact path="/catalog/:id/add-review" element={<AddReview />} />
+          <Route path="/catalog/:id" element={<BookDetails />} />
 
-          <Route exact path="/catalog/:id/reviews/:id/edit" element={<EditReview />} />
+          <Route path="/catalog/:id/reviews" element={<Reviews byBook />} />
 
-          <Route exact path="/login" element={<Login />} />
+          <Route path="/catalog/:id/add-review" element={<AddReview />} />
 
-          <Route exact path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
 
-          <Route exact path="/profile" element={<Profile />} />
+          <Route path="/register" element={<Register />} />
 
-          <Route exact path="/profile/readlist" element={<ReadList />} />
+          <Route path="/profile" element={<Profile />} />
 
-          <Route exact path="/profile/favourites" element={<Favourites />} />
+          <Route path="/profile/readlist" element={<ReadList />} />
 
-          <Route exact path="/profile/completed" element={<Completed />} />
+          <Route path="/profile/favourites" element={<Favourites />} />
 
-          <Route exact path="/profile/my-reviews" element={<MyReviews />} />
+          <Route path="/profile/completed" element={<Completed />} />
+
+          <Route path="/profile/my-reviews" element={<Reviews byUser />} />
         </Routes>
       </div >
 

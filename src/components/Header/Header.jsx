@@ -42,6 +42,10 @@ const Header = () => {
                             <Link className="header__nav-link" to="/catalog">Catalog</Link>
                         </li>
 
+                        <li className="header__nav-item">
+                            <Link className="header__nav-link" to="/reviews">Reviews</Link>
+                        </li>
+
                         {isAuth && (
                             <>
                                 <li className="header__nav-item">

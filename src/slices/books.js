@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import bookService from "../services/bookService";
 
