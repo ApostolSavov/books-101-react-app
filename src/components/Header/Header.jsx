@@ -1,21 +1,23 @@
 import { Link } from "react-router-dom";
 import MenuBook from "../../assets/MenuBook.svg";
-import userService from "../../services/userService";
 import useIsAuth from "../../utils/hooks/useIsAuth";
-import useLocalStorage from "../../utils/hooks/useLocalStorage";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { logout } from "../../slices/user";
 
 import "./Header.scss";
 
 
 const Header = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    useLocalStorage();
     const isAuth = useIsAuth();
 
     const onLogout = () => {
-        userService.logout();
+        dispatch(
+            logout()
+        );
         navigate('/catalog');
     };
 

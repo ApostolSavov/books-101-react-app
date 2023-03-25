@@ -1,7 +1,10 @@
-import userService from '../../services/userService';
+import { useSelector } from "react-redux";
 
 const useIsAuth = () => {
-    return userService.getLocalUser();
+    const { user } = useSelector(({ user }) => user);
+
+    return !!user;
+
 };
 
 export default useIsAuth;

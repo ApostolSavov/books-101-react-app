@@ -2,12 +2,17 @@ import './Login.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import emailService from '../../utils/helpers/emailService';
-import userService from '../../services/userService';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../slices/user";
+import { useEffect } from 'react';
+
 
 const Login = () => {
-
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { user, isLoaded, error } = useSelector(({ user }) => user);
+
 
     const formik = useFormik({
         initialValues: {
@@ -19,16 +24,19 @@ const Login = () => {
                 .email(new RegExp(emailService.emailRegex), 'Invalid email format')
         }),
         onSubmit: (values) => {
-            userService.login(
-                {
-                    email: values.email,
-                    password: values.password,
-                }
-            )
-                .then(() => navigate('/catalog'))
-                .catch(() => alert('There was a problem'));
+            dispatch(
+                login(values)
+            );
         }
     });
+
+    useEffect(() => {
+        if (isLoaded && user) {
+            navigate('/catalog');
+        } else if (error) {
+            alert('There was a problem');
+        }
+    }, [user]);
 
     return (
         <div className='login-page'>
