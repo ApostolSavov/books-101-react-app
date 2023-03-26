@@ -14,7 +14,7 @@ const requester = (method, url, body) => {
     }
 
     const httpInstance = axios.create({
-        baseURL: "http://localhost:4000/api",
+        baseURL: process.env.api || "http://localhost:4000/api",
         headers
     });
 
