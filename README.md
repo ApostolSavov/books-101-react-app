@@ -18,5 +18,9 @@ Reviews (view, add, edit, delete) - relation with books and users collection
 # Static collection:
 Books (view)
 
-Landing page:
+Example screenshots of various pages:
 ![](./app%20wip.png)
+![](./app%20wip%202.png)
+![](./app%20wip%203.png)
+![](./app%20wip%204.png)
+![](./app%20wip%205.png)
