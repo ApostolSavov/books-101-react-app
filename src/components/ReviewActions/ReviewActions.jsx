@@ -18,7 +18,8 @@ const ReviewActions = (props) => {
         if (action) {
             dispatch(
                 deleteReview(reviewId)
-            );
+            )
+                .then(() => navigate('/reviews'));
         }
     };
 
