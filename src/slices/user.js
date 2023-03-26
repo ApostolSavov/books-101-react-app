@@ -24,7 +24,7 @@ export const register = createAsyncThunk(
 const persistedUser = localStorage.getItem('user');
 const initialUser = persistedUser ? JSON.parse(persistedUser) : null;
 
-const initialState = { user: initialUser, isLoaded: false, error: null };
+const initialState = { user: initialUser, isLoaded: initialUser ? true : false, error: null };
 
 const userSlice = createSlice({
     name: "user",
@@ -33,6 +33,7 @@ const userSlice = createSlice({
         logout: (state) => {
             state.user = null;
             localStorage.setItem('user', '');
+            state.isLoaded = true;
         },
     },
     extraReducers: {

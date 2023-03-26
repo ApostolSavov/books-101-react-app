@@ -1,0 +1,7 @@
+.reviews-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60rem, 60rem));
+    grid-template-rows: auto;
+    gap: 3rem;
+    justify-content: center;
+}

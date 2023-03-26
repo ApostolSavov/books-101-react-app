@@ -6,21 +6,29 @@ const getAll = (params) => {
     const userFilter = userId ? `&userId=${userId}` : '';
     const bookFilter = bookId ? `&bookId=${bookId}` : '';
 
-    return http.get(`/reviews?_expand=user${userFilter}${bookFilter}`);
+    return http.get(`/reviews?_expand=user&_expand=book${userFilter}${bookFilter}`);
 };
 
-const getAllByBook = (id) => {
-    return http.get(`/reviews?_expand=user&bookId=${id}`);
+const postReview = (data) => {
+
+    return http.post(`/reviews`, { ...data });
 };
 
-const getAllByUser = (id) => {
-    return http.get(`/reviews?_expand=user&userId=${id}`);
+const editReview = (data) => {
+
+    return http.patch(`/reviews/${data.id}`, { ...data });
+};
+
+const deleteReview = (id) => {
+
+    return http.delete(`/reviews/${id}`);
 };
 
 const reviewService = {
     getAll,
-    getAllByBook,
-    getAllByUser
+    postReview,
+    editReview,
+    deleteReview
 };
 
 export default reviewService;

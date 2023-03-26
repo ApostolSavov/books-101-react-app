@@ -1,8 +1,123 @@
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getAllReviews, editReview } from 'slices/review';
 import './EditReview.scss';
+import { useState, useEffect } from 'react';
 
 const EditReview = () => {
 
-    return <div>Edit review</div>;
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { id } = useParams();
+    const { list, isLoaded, error } = useSelector(({ reviews }) => reviews);
+    const { user, isLoaded: userLoaded, error: userError } = useSelector(({ user }) => user);
+
+    const [currentReview, setCurrentReview] = useState({});
+
+    useEffect(() => {
+        if (isLoaded) {
+            setCurrentReview(list.find(review => review.id == id));
+        } else {
+            dispatch(getAllReviews({}));
+        }
+    }, [list]);
+
+    const loaders = [isLoaded, userLoaded,];
+    const errors = [error, userError];
+
+    console.log(currentReview);
+
+    const formik = useFormik({
+        initialValues: {
+            title: currentReview?.title,
+            content: currentReview?.content,
+            rating: Number(currentReview?.rating)
+        },
+        enableReinitialize: true,
+        validationSchema: Yup.object({
+            title: Yup.string().required(),
+            content: Yup.string().required(),
+            rating: Yup.number().required(),
+        }),
+        onSubmit: (values) => {
+            const reviewData = {
+                ...values,
+                id: (currentReview.id)
+            };
+            dispatch(
+                editReview(reviewData)
+            )
+                .then(() => navigate('/reviews'));
+        }
+    });
+
+    return (
+        <div className='add-review-page'>
+
+            <form onSubmit={formik.handleSubmit} className='form'>
+
+                <div className='form-input-wrapper'>
+                    <label htmlFor={'title'}>
+                        Title
+                    </label>
+                    <input
+                        id='title'
+                        name='title'
+                        type='text'
+                        placeholder='title'
+                        onChange={formik.handleChange}
+                        value={formik.values.title}
+                        className='form-input'
+                    />
+                </div>
+
+                <div className='form-input-wrapper'>
+                    <label htmlFor={'content'}>
+                        Content
+                    </label>
+                    <textarea
+                        id='content'
+                        name='content'
+                        placeholder='content'
+                        onChange={formik.handleChange}
+                        value={formik.values.content}
+                        className='form-input'
+                    />
+                </div>
+
+                <div className='form-input-wrapper'>
+                    <label htmlFor={'rating'}>
+                        Rating
+                    </label>
+                    <select
+                        id='rating'
+                        name='rating'
+                        placeholder='rating'
+                        onChange={formik.handleChange}
+                        value={formik.values.rating}
+                        className='form-input'
+                    >
+                        <option value={1} >1</option>
+                        <option value={2} >2</option>
+                        <option value={3} >3</option>
+                        <option value={4} >4</option>
+                        <option value={5} >5</option>
+                    </select>
+                </div>
+
+                <button
+                    type='submit'
+                    className='form-submit-btn'
+                >
+                    Edit
+                </button>
+
+            </form>
+
+        </div>
+    );
 };
 
 export default EditReview;

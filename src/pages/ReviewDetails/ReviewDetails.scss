@@ -1,0 +1,43 @@
+.review-details-page {
+    display: flex;
+    gap: 4rem;
+}
+
+.review-details {
+    &-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        background-color: white;
+        padding: 2rem;
+    }
+
+    &-title,
+    &-author,
+    &-rating {
+        display: flex;
+        gap: 1rem;
+    }
+
+    &-links-container {
+        display: flex;
+        margin-top: auto;
+        gap: 2rem;
+    }
+
+    &-votes {
+        display: flex;
+        gap: 4rem;
+        margin-top: 1rem;
+    }
+
+    &-actions-upvote,
+    &-actions-downvote {
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+}

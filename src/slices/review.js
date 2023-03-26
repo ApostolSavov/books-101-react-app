@@ -9,18 +9,27 @@ export const getAllReviews = createAsyncThunk(
             .catch(({ response }) => response);
     });
 
-export const getAllReviewsByBook = createAsyncThunk(
-    'reviews/getAllReviewsByBook',
-    (id) => {
-        return reviewService.getAllByBook(id)
+export const postReview = createAsyncThunk(
+    'reviews/postReview',
+    (data) => {
+        return reviewService.postReview(data)
             .then(({ data }) => data)
             .catch(({ response }) => response);
     });
 
-export const getAllReviewsByUser = createAsyncThunk(
-    'reviews/getAllReviewsByUser',
+export const editReview = createAsyncThunk(
+    'reviews/editReview',
+    (data) => {
+        return reviewService.editReview(data)
+            .then(({ data }) => data)
+            .catch(({ response }) => response);
+    });
+
+
+export const deleteReview = createAsyncThunk(
+    'reviews/deleteReview',
     (id) => {
-        return reviewService.getAllByUser(id)
+        return reviewService.deleteReview(id)
             .then(({ data }) => data)
             .catch(({ response }) => response);
     });
@@ -44,26 +53,7 @@ const reviewsSlice = createSlice({
             state.isLoaded = true;
             state.error = action.payload;
         },
-        // @ts-ignore
-        [getAllReviewsByBook.fulfilled]: (state, action) => {
-            state.isLoaded = true;
-            state.list = action.payload;
-        },
-        // @ts-ignore
-        [getAllReviewsByBook.rejected]: (state, action) => {
-            state.isLoaded = true;
-            state.error = action.payload;
-        },
-        // @ts-ignore
-        [getAllReviewsByUser.fulfilled]: (state, action) => {
-            state.isLoaded = true;
-            state.list = action.payload;
-        },
-        // @ts-ignore
-        [getAllReviewsByUser.rejected]: (state, action) => {
-            state.isLoaded = true;
-            state.error = action.payload;
-        }
+
     }
 });
 

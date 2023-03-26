@@ -1,0 +1,21 @@
+@import 'style-constants.scss';
+
+.review-actions {
+    display: flex;
+    gap: 2rem;
+    margin-top: auto;
+}
+
+.review-edit {
+    padding: 2rem;
+    background-color: $primary-color-dark;
+    color: white;
+    cursor: pointer;
+}
+
+.review-delete {
+    padding: 2rem;
+    background-color: $primary-color-darkest;
+    color: white;
+    cursor: pointer;
+}

@@ -12,6 +12,9 @@ const AddReviewCta = (props) => {
     } = props;
 
 
+    console.log({ noAuth, noReview });
+
+
     return (
         <div className='add-review-cta'>
 

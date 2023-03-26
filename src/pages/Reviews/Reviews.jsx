@@ -2,7 +2,7 @@ import ReviewList from 'components/ReviewList/ReviewList';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getAllReviews, getAllReviewsByBook, getAllReviewsByUser } from 'slices/review';
+import { getAllReviews } from 'slices/review';
 import Spinner from 'utils/Spinner/Spinner';
 import './Reviews.scss';
 
@@ -22,6 +22,7 @@ const Reviews = (props) => {
     useEffect(() => {
         const { id } = params;
 
+
         if (byBook) {
             dispatch(
                 getAllReviews({ bookId: id })
@@ -32,11 +33,11 @@ const Reviews = (props) => {
             );
         } else {
             dispatch(
-                getAllReviews()
+                getAllReviews({})
             );
         }
 
-    }, []);
+    }, [byBook, byUser]);
 
 
     return (

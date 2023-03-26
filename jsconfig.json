@@ -1,13 +1,7 @@
 {
-    "compilerOptions": {
-        "baseUrl": "src",
-        "checkJs": true,
-        "jsx": "react-jsx",
-    },
-    "include": [
-        "src"
-    ],
-    "exclude": [
-        "node_modules"
-    ]
-}
+    "compilerOptions":{
+       "baseUrl":"./src",
+       "checkJs":true,
+       "jsx":"react-jsx"
+    }
+ }

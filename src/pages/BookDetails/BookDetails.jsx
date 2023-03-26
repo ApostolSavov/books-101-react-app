@@ -17,18 +17,21 @@ const BookDetailsPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
 
+    const loaders = [isLoaded, userLoaded, reviewsLoaded];
+    const errors = [error, userError, reviewsError];
 
 
     useEffect(() => {
-        if (isLoaded) {
-            setCurrentBook(collection.find(book => book.id == id));
+        dispatch(getAllReviews({ bookId: id, userId: user?.user?.id }));
+
+        if (isLoaded && reviewsLoaded) {
+            setCurrentBook(collection.find(book => book?.id == id));
         } else {
             dispatch(getAllBooks());
-            dispatch(getAllReviews({ bookId: id, userId: user?.user?.id }));
         }
     }, [collection]);
 
-    console.log({ currentBook });
+    const existingReviewId = list.length > 0 ? list[0]?.id : null;
 
     return (
         <div className="book-details-page">
@@ -39,60 +42,66 @@ const BookDetailsPage = () => {
                 </div>
             )}
 
-            <AddReviewCta
-                noAuth={!user}
-                noReview={list.length === 0}
-                bookId={id}
-                reviewId={list[0]?.id}
-            />
+            {loaders.every(Boolean) && !errors.some(Boolean) && (
 
-            <div className="book-details-card">
-                <img src={`../${currentBook.imageLink}`} />
-            </div>
+                <>
 
-            <div className="book-details-info">
+                    <AddReviewCta
+                        noAuth={!user}
+                        noReview={!existingReviewId}
+                        bookId={id}
+                        reviewId={existingReviewId}
+                    />
 
-
-                <div className="book-details-title">
-                    Title: <strong>{currentBook.title}</strong>
-                </div>
-
-                <div className="book-details-author">
-                    Author: <strong>{currentBook.author}</strong>
-                </div>
-
-                <div className="book-details-country">
-                    Country: <strong>{currentBook.country}</strong>
-                </div>
-
-                <div className="book-details-language">
-                    Language: <strong>{currentBook.language}</strong>
-                </div>
-
-                <div className="book-details-pages">
-                    Pages: <strong>{currentBook.pages}</strong>
-                </div>
-
-                <div className="book-details-year">
-                    Year: <strong>{currentBook.year}</strong>
-                </div>
-
-                <div className='book-details-links-container'>
-
-                    <div className="book-details-wiki-link">
-                        <a href={currentBook.link} target={'_blank'}>
-                            Go to Wiki page
-                        </a>
+                    <div className="book-details-card">
+                        <img src={`../${currentBook.imageLink}`} />
                     </div>
 
-                    <div className="book-details-see-reviews-btn">
-                        <Link to={`/catalog/${currentBook.id}/reviews`}>
-                            See reviews
-                        </Link>
-                    </div>
-                </div>
+                    <div className="book-details-info">
 
-            </div>
+
+                        <div className="book-details-title">
+                            Title: <strong>{currentBook.title}</strong>
+                        </div>
+
+                        <div className="book-details-author">
+                            Author: <strong>{currentBook.author}</strong>
+                        </div>
+
+                        <div className="book-details-country">
+                            Country: <strong>{currentBook.country}</strong>
+                        </div>
+
+                        <div className="book-details-language">
+                            Language: <strong>{currentBook.language}</strong>
+                        </div>
+
+                        <div className="book-details-pages">
+                            Pages: <strong>{currentBook.pages}</strong>
+                        </div>
+
+                        <div className="book-details-year">
+                            Year: <strong>{currentBook.year}</strong>
+                        </div>
+
+                        <div className='book-details-links-container'>
+
+                            <div className="book-details-wiki-link">
+                                <a href={currentBook.link} target={'_blank'}>
+                                    Go to Wiki page
+                                </a>
+                            </div>
+
+                            <div className="book-details-see-reviews-btn">
+                                <Link to={`/catalog/${currentBook.id}/reviews`}>
+                                    See reviews
+                                </Link>
+                            </div>
+                        </div>
+
+                    </div>
+                </>
+            )}
         </div>
     );
 };

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Review.scss';
 
 
@@ -7,18 +8,42 @@ const Review = (props) => {
         review
     } = props;
 
+    console.log({ review });
+
 
     return (
         <div className='review'>
-            {review.title}
 
-            {review.content}
+            <div className='review-book'>
+                <img className='review-book-image' src={`../../${review.book.imageLink}`} alt="" />
+            </div>
 
-            {review.rating}
 
-            {review.upvotes}
+            <div className='review-summary'>
 
-            {review.downvotes}
+                <div className='review-author'>
+                    By User: {review.user.username}
+                </div>
+
+                <div className='review-title'>
+                    {review.title}
+                </div>
+
+                <div className='review-rating'>
+                    Rating: {review.rating}
+                </div>
+            </div>
+
+            <div className='review-actions'>
+
+                <Link to={`/reviews/${review.id}`}>
+                    <div className='review-details-btn'>
+                        Read Full Review
+                    </div>
+                </Link>
+
+            </div>
+
         </div>
     );
 };

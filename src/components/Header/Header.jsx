@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import MenuBook from "../../assets/MenuBook.svg";
 import useIsAuth from "../../utils/hooks/useIsAuth";
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import "./Header.scss";
 
 const Header = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const dispatch = useDispatch();
 
     const isAuth = useIsAuth();
