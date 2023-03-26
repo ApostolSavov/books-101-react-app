@@ -16,7 +16,7 @@ import Profile from "./pages/Profile/Profile";
 import ReadList from "./pages/ReadList/ReadList";
 import Favourites from "./pages/Favourites/Favourites";
 import Completed from "./pages/Completed/Completed";
-import MyReviews from "./pages/MyReviews/MyReviews";
+import AuthGuard from "utils/guards/AuthGuard";
 
 function App() {
 
@@ -32,7 +32,11 @@ function App() {
 
           <Route path="/reviews/:id" element={<ReviewDetails />} />
 
-          <Route path="/reviews/:id/edit" element={<EditReview />} />
+          <Route path="/reviews/:id/edit" element={(
+            <AuthGuard isOwner>
+              <EditReview />
+            </AuthGuard>
+          )} />
 
           <Route path="/catalog" element={<Catalog />} />
 
@@ -40,7 +44,11 @@ function App() {
 
           <Route path="/catalog/:id/reviews" element={<Reviews byBook />} />
 
-          <Route path="/catalog/:id/add-review" element={<AddReview />} />
+          <Route path="/catalog/:id/add-review" element={(
+            <AuthGuard>
+              <AddReview />
+            </AuthGuard>
+          )} />
 
           <Route path="/login" element={<Login />} />
 

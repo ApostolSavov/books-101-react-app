@@ -17,8 +17,8 @@ const BookDetailsPage = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
 
-    const loaders = [isLoaded, userLoaded, reviewsLoaded];
-    const errors = [error, userError, reviewsError];
+    const loaders = [isLoaded, reviewsLoaded];
+    const errors = [error, reviewsError];
 
 
     useEffect(() => {

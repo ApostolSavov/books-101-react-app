@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getAllReviews } from 'slices/review';
+import useIsAuth from 'utils/hooks/useIsAuth';
 import Spinner from 'utils/Spinner/Spinner';
 import './ReviewDetails.scss';
 
@@ -19,6 +20,10 @@ const ReviewDetails = () => {
             dispatch(getAllReviews({ bookId: currentReview.book?.id }));
         }
     }, [list]);
+
+    const isOwner = useIsAuth(true, id);
+
+    console.log({ isOwner });
 
     const onClickUpvote = () => { };
 
@@ -87,7 +92,9 @@ const ReviewDetails = () => {
                             </div>
                         </div>
 
-                        <ReviewActions reviewId={id} />
+                        {isOwner && (
+                            <ReviewActions reviewId={id} />
+                        )}
 
                     </div>
                 </>
