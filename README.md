@@ -1,5 +1,7 @@
 # Softuni React Course Project - work in progress
 
+# Explore here: https://books-101-react.onrender.com/
+
 # Summary:
 review books, interact with other reviews by voting, add book to your read or favourites list
 
