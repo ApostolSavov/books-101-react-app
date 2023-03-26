@@ -78,7 +78,7 @@ const ReviewDetails = () => {
                             <div>Please register or login to vote</div>
                         )}
 
-                        {isAuth && (
+                        {isAuth && !isOwner && (
                             <div className='review-details-actions-container'>
                                 What do you think of this review?
 

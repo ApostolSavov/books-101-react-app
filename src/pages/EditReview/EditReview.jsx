@@ -66,11 +66,11 @@ const EditReview = () => {
                         id='title'
                         name='title'
                         type='text'
-                        placeholder='title'
                         onChange={formik.handleChange}
                         value={formik.values.title}
                         className='form-input'
                     />
+                    {formik.errors.title && <p className='error-text'>{formik.errors.title}</p>}
                 </div>
 
                 <div className='form-input-wrapper'>
@@ -80,11 +80,11 @@ const EditReview = () => {
                     <textarea
                         id='content'
                         name='content'
-                        placeholder='content'
                         onChange={formik.handleChange}
                         value={formik.values.content}
                         className='form-input'
                     />
+                    {formik.errors.content && <p className='error-text'>{formik.errors.content}</p>}
                 </div>
 
                 <div className='form-input-wrapper'>
@@ -94,7 +94,6 @@ const EditReview = () => {
                     <select
                         id='rating'
                         name='rating'
-                        placeholder='rating'
                         onChange={formik.handleChange}
                         value={formik.values.rating}
                         className='form-input'

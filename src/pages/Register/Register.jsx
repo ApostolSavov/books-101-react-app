@@ -23,7 +23,7 @@ const Register = () => {
                 .max(10, 'Username cannot exceed 10 characters.')
                 .required('Required'),
             email: Yup.string()
-                .email(new RegExp(emailService.emailRegex), 'Invalid email format')
+                .email('Invalid email format')
                 .required(),
             password: Yup.string()
                 .min(6, 'Password should be at least 6 characters long.')
@@ -51,40 +51,48 @@ const Register = () => {
             <form onSubmit={formik.handleSubmit} className='form'>
 
                 <div className='form-input-wrapper'>
+                    <label htmlFor={'username'}>
+                        Username
+                    </label>
                     <input
                         id='username'
                         name='username'
                         type='text'
-                        placeholder='username'
                         onChange={formik.handleChange}
                         value={formik.values.username}
                         className='form-input'
                     />
-                    {formik.errors.username && <p>{formik.errors.username}</p>}
+                    {formik.errors.username && <p className='error-text'>{formik.errors.username}</p>}
                 </div>
 
                 <div className='form-input-wrapper'>
+                    <label htmlFor={'email'}>
+                        Email
+                    </label>
                     <input
                         id='email'
                         name='email'
                         type='email'
-                        placeholder='email'
                         onChange={formik.handleChange}
                         value={formik.values.email}
                         className='form-input'
                     />
+                    {formik.errors.email && <p className='error-text'>{formik.errors.email}</p>}
                 </div>
 
                 <div className='form-input-wrapper'>
+                    <label htmlFor={'password'}>
+                        Password
+                    </label>
                     <input
                         id='password'
                         name='password'
                         type='password'
-                        placeholder='password'
                         onChange={formik.handleChange}
                         value={formik.values.password}
                         className='form-input'
                     />
+                    {formik.errors.password && <p className='error-text'>{formik.errors.password}</p>}
                 </div>
 
                 <button

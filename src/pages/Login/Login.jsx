@@ -20,7 +20,7 @@ const Login = () => {
         },
         validationSchema: Yup.object({
             email: Yup.string()
-                .email(new RegExp(emailService.emailRegex), 'Invalid email format')
+                .email('Invalid email format')
         }),
         onSubmit: (values) => {
             dispatch(
@@ -38,27 +38,33 @@ const Login = () => {
             <form onSubmit={formik.handleSubmit} className='form'>
 
                 <div className='form-input-wrapper'>
+                    <label htmlFor={'email'}>
+                        Email
+                    </label>
                     <input
                         id='email'
                         name='email'
                         type='email'
-                        placeholder='email'
                         onChange={formik.handleChange}
                         value={formik.values.email}
                         className='form-input'
                     />
+                    {formik.errors.email && <p className='error-text'>{formik.errors.email}</p>}
                 </div>
 
                 <div className='form-input-wrapper'>
+                    <label htmlFor={'password'}>
+                        Password
+                    </label>
                     <input
                         id='password'
                         name='password'
                         type='password'
-                        placeholder='password'
                         onChange={formik.handleChange}
                         value={formik.values.password}
                         className='form-input'
                     />
+                    {formik.errors.password && <p className='error-text'>{formik.errors.password}</p>}
                 </div>
 
                 <button
