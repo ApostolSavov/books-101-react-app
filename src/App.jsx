@@ -21,7 +21,7 @@ import AuthGuard from "utils/guards/AuthGuard";
 function App() {
 
   return (
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
       <Header />
 
       <div className="main-wrapper">
