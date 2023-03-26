@@ -26,7 +26,9 @@ function App() {
 
       <div className="main-wrapper">
         <Routes>
-          <Route path="/" element={<Navigate to="/catalog" replace />} />
+          <Route path="/" element={<Catalog />} />
+
+          <Route path="/catalog" element={<Catalog />} />
 
           <Route path="/reviews" element={<Reviews />} />
 
@@ -37,8 +39,6 @@ function App() {
               <EditReview />
             </AuthGuard>
           )} />
-
-          <Route path="/catalog" element={<Catalog />} />
 
           <Route path="/catalog/:id" element={<BookDetails />} />
 
