@@ -4,11 +4,13 @@ import * as Yup from 'yup';
 import emailService from '../../utils/helpers/emailService';
 import userService from '../../services/userService';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from 'slices/user';
 
 
 const Register = () => {
-
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const formik = useFormik({
         initialValues: {
@@ -22,14 +24,21 @@ const Register = () => {
                 .required('Required'),
             email: Yup.string()
                 .email(new RegExp(emailService.emailRegex), 'Invalid email format')
+                .required(),
+            password: Yup.string()
+                .min(6, 'Password should be at least 6 characters long.')
+                .required('Required')
         }),
         onSubmit: (values) => {
-            userService.register(
-                {
-                    username: values.username,
-                    email: values.email,
-                    password: values.password,
-                }
+            const data = {
+                ...values,
+                readlist: [],
+                favourites: [],
+                upvotes: [],
+                downvotes: []
+            };
+            dispatch(
+                register(data)
             )
                 .then(() => navigate('/catalog'))
                 .catch(() => alert('There was a problem'));

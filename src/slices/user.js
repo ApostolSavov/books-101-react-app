@@ -14,8 +14,8 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk(
     'user/register',
-    () => {
-        return userService.register()
+    (values) => {
+        return userService.register(values)
             .then(({ data }) => data)
             .catch(({ error }) => error);
     }

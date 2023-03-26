@@ -11,7 +11,6 @@ import { useEffect } from 'react';
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const { user, isLoaded, error } = useSelector(({ user }) => user);
 
 
     const formik = useFormik({
@@ -26,17 +25,12 @@ const Login = () => {
         onSubmit: (values) => {
             dispatch(
                 login(values)
-            );
+            )
+                .then(() => navigate('/catalog'))
+                .catch(() => alert('There was a problem'));
         }
     });
 
-    useEffect(() => {
-        if (isLoaded && user) {
-            navigate('/catalog');
-        } else if (error) {
-            alert('There was a problem');
-        }
-    }, [user]);
 
     return (
         <div className='login-page'>
