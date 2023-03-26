@@ -22,6 +22,7 @@ const ReviewDetails = () => {
     }, [list]);
 
     const isOwner = useIsAuth(true, id);
+    const isAuth = useIsAuth();
 
     console.log({ isOwner });
 
@@ -73,24 +74,29 @@ const ReviewDetails = () => {
                             </div>
                         </div>
 
+                        {!isAuth && (
+                            <div>Please register or login to vote</div>
+                        )}
 
-                        <div className='review-details-actions-container'>
-                            What do you think of this review?
+                        {isAuth && (
+                            <div className='review-details-actions-container'>
+                                What do you think of this review?
 
-                            <div className="review-details-votes">
-                                <strong
-                                    className="review-details-actions-upvote"
-                                    onClick={onClickUpvote}>
-                                    👍
-                                </strong>
+                                <div className="review-details-votes">
+                                    <strong
+                                        className="review-details-actions-upvote"
+                                        onClick={onClickUpvote}>
+                                        👍
+                                    </strong>
 
-                                <strong
-                                    className="review-details-actions-downvote"
-                                    onClick={onClickDownvote}>
-                                    👎
-                                </strong>
+                                    <strong
+                                        className="review-details-actions-downvote"
+                                        onClick={onClickDownvote}>
+                                        👎
+                                    </strong>
+                                </div>
                             </div>
-                        </div>
+                        )}
 
                         {isOwner && (
                             <ReviewActions reviewId={id} />
