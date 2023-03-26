@@ -4,7 +4,7 @@ import "./App.scss";
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
-import Catalog from "./pages/Catalog/Catalog";
+import Catalog from "pages/Catalog/Catalog";
 import BookDetails from "./pages/BookDetails/BookDetails";
 import Reviews from "./pages/Reviews/Reviews";
 import ReviewDetails from "./pages/ReviewDetails/ReviewDetails";

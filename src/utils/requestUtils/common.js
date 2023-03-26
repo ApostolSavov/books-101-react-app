@@ -12,6 +12,9 @@ const requester = (method, url, body) => {
     if (token) {
         headers['Authorization'] = `Bearer ${token}`;
     }
+    console.log({ env: process.env });
+
+    console.log({ api: process.env.api });
 
     const httpInstance = axios.create({
         baseURL: process.env.api || "http://localhost:4000/api",
