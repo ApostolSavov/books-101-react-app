@@ -32,10 +32,6 @@ const Register = () => {
         onSubmit: (values) => {
             const data = {
                 ...values,
-                readlist: [],
-                favourites: [],
-                upvotes: [],
-                downvotes: []
             };
             dispatch(
                 register(data)

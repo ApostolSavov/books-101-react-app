@@ -29,8 +29,8 @@ const AddReview = () => {
         onSubmit: (values) => {
             const reviewData = {
                 ...values,
-                upvotes: 0,
-                downvotes: 0,
+                upvotes: [],
+                downvotes: [],
                 userId: user.user.id,
                 bookId: Number(id)
             };
