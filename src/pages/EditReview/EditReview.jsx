@@ -82,7 +82,7 @@ const EditReview = () => {
                         name='content'
                         onChange={formik.handleChange}
                         value={formik.values.content}
-                        className='form-input'
+                        className='form-input text-area'
                     />
                     {formik.errors.content && <p className='error-text'>{formik.errors.content}</p>}
                 </div>

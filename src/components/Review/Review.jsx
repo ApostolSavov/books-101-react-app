@@ -30,7 +30,7 @@ const Review = (props) => {
                 </div>
 
                 <div className='review-rating'>
-                    Rating: {review.rating}
+                    Rating: {[...Array(Number(review.rating)).keys()].map(() => '⭐️')}
                 </div>
             </div>
 

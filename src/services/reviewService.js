@@ -24,11 +24,23 @@ const deleteReview = (id) => {
     return http.delete(`/reviews/${id}`);
 };
 
+const upvoteReview = ({ upvotes, id }) => {
+
+    return http.patch(`/reviews/${id}`, { upvotes });
+};
+
+const downvoteReview = ({ downvotes, id }) => {
+
+    return http.patch(`/reviews/${id}`, { downvotes });
+};
+
 const reviewService = {
     getAll,
     postReview,
     editReview,
-    deleteReview
+    deleteReview,
+    upvoteReview,
+    downvoteReview
 };
 
 export default reviewService;

@@ -2,7 +2,7 @@ import ReviewActions from 'components/ReviewActions/ReviewActions';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getAllReviews } from 'slices/review';
+import { downvoteReview, getAllReviews, upvoteReview } from 'slices/review';
 import useIsAuth from 'utils/hooks/useIsAuth';
 import Spinner from 'utils/Spinner/Spinner';
 import './ReviewDetails.scss';
@@ -11,6 +11,7 @@ const ReviewDetails = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { list, isLoaded, error } = useSelector(({ reviews }) => reviews);
+    const { user, isLoaded: userLoaded, error: userError } = useSelector(({ user }) => user);
     const [currentReview, setCurrentReview] = useState({});
 
     useEffect(() => {
@@ -24,11 +25,34 @@ const ReviewDetails = () => {
     const isOwner = useIsAuth(true, id);
     const isAuth = useIsAuth();
 
-    console.log({ isOwner });
 
-    const onClickUpvote = () => { };
+    const onClickUpvote = () => {
+        if (currentReview.upvotes.includes(user.user.id)) {
+            return alert('You have already upvoted this review!');
+        }
 
-    const onClickDownvote = () => { };
+        dispatch(
+            upvoteReview({
+                upvotes: [...currentReview.upvotes, user.user.id],
+                id: currentReview.id
+            })
+        )
+            .then(() => setCurrentReview({ ...currentReview, upvotes: [...currentReview.upvotes, user.user.id] }));
+    };
+
+    const onClickDownvote = () => {
+        if (currentReview.downvotes.includes(user.user.id)) {
+            return alert('You have already downvoted this review!');
+        }
+
+        dispatch(
+            downvoteReview({
+                downvotes: [...currentReview.downvotes, user.user.id],
+                id: currentReview.id
+            })
+        )
+            .then(() => setCurrentReview({ ...currentReview, downvotes: [...currentReview.downvotes, user.user.id] }));
+    };
 
     return (
         <div className="review-details-page">
@@ -61,16 +85,16 @@ const ReviewDetails = () => {
                         </div>
 
                         <div className="review-details-rating">
-                            Rating: <strong>{currentReview.rating}</strong>
+                            Rating: <strong>{currentReview.rating ? [...Array(Number(currentReview.rating)).keys()].map(() => '⭐️') : ''}</strong>
                         </div>
 
                         <div className='review-details-votes-container'>
                             What others think of this review
 
                             <div className="review-details-votes">
-                                <strong>👍 {currentReview.upvotes}</strong>
+                                <strong>👍 {currentReview.upvotes?.length}</strong>
 
-                                <strong>👎 {currentReview.downvotes}</strong>
+                                <strong>👎 {currentReview.downvotes?.length}</strong>
                             </div>
                         </div>
 

@@ -45,13 +45,16 @@ const BookDetailsPage = () => {
             {loaders.every(Boolean) && !errors.some(Boolean) && (
 
                 <>
+                    <div className='book-details-cta-container'>
 
-                    <AddReviewCta
-                        noAuth={!user}
-                        noReview={!existingReviewId}
-                        bookId={id}
-                        reviewId={existingReviewId}
-                    />
+                        <AddReviewCta
+                            noAuth={!user}
+                            noReview={!existingReviewId}
+                            bookId={id}
+                            reviewId={existingReviewId}
+                        />
+
+                    </div>
 
                     <div className="book-details-card">
                         <img src={`../${currentBook.imageLink}`} />

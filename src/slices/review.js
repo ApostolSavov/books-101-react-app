@@ -34,6 +34,22 @@ export const deleteReview = createAsyncThunk(
             .catch(({ response }) => response);
     });
 
+export const upvoteReview = createAsyncThunk(
+    'reviews/upvoteReview',
+    (data) => {
+        return reviewService.upvoteReview(data)
+            .then(({ data }) => data)
+            .catch(({ response }) => response);
+    });
+
+export const downvoteReview = createAsyncThunk(
+    'reviews/downvoteReview',
+    (data) => {
+        return reviewService.downvoteReview(data)
+            .then(({ data }) => data)
+            .catch(({ response }) => response);
+    });
+
 const initialState = { list: [], isLoaded: false, error: null };
 
 const reviewsSlice = createSlice({

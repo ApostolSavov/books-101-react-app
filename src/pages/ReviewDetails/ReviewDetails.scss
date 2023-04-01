@@ -17,6 +17,8 @@
     &-rating {
         display: flex;
         gap: 1rem;
+        align-items: center;
+
     }
 
     &-links-container {
@@ -29,6 +31,7 @@
         display: flex;
         gap: 4rem;
         margin-top: 1rem;
+        align-items: center;
     }
 
     &-actions-upvote,
