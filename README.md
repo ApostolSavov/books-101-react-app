@@ -2,27 +2,26 @@
 
 # Explore here: https://books-101-react-app.vercel.app/
 
+# Note:
+Deployed app persists data only while the BE instance is awake - once it sleep after some time of inactivity, all changes are removed and only the initial/ seed data is present.
+
 # Summary:
-review books, interact with other reviews by voting, add book to your read or favourites list
+View, create, edit or delete reviews of books from the catalog.
+
+Each review has a title, content, star rating and votes.
+
+Up/ down vote other users' reviews.
+
+Public part: viewing reviews list/catalog, book catalog, review details, book details
+
+Private functionality: voting, post/edit/delete review, have a page of your own reviews listed
 
 # Remaining work:
-- user profile page with read list
-- up/down votes logic
-- route testing (no auth vs auth vs owner)
-- more specific form validation rules
 - responsive queries and style improvements
 - code cleanup refactoring
-- deploy BE and FE
 
 # Dynamic collection:
 Reviews (view, add, edit, delete) - relation with books and users collection
 
 # Static collection:
 Books (view)
-
-Example screenshots of various pages:
-![](./app%20wip.png)
-![](./app%20wip%202.png)
-![](./app%20wip%203.png)
-![](./app%20wip%204.png)
-![](./app%20wip%205.png)
