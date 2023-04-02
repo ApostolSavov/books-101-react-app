@@ -24,14 +24,24 @@ const ReviewDetails = () => {
 
     const isOwner = useIsAuth(true, id);
     const isAuth = useIsAuth();
-
+    const hasDownvoted = () => currentReview?.downvotes?.includes(user.user.id);
+    const hasUpvoted = () => currentReview?.upvotes?.includes(user.user.id);
 
     const onClickUpvote = () => {
-        if (currentReview.upvotes.includes(user.user.id)) {
-            return alert('You have already upvoted this review!');
+        if (hasDownvoted()) {
+            return alert('You have already downvoted this review. To upvote, first un-downvote by clicking again.');
+        }
+        if (hasUpvoted()) {
+            return dispatch(
+                upvoteReview({
+                    upvotes: [...currentReview.upvotes.filter((id) => id != user.user.id)],
+                    id: currentReview.id
+                })
+            )
+                .then(() => setCurrentReview({ ...currentReview, upvotes: [...currentReview.upvotes.filter((id) => id != user.user.id)] }));
         }
 
-        dispatch(
+        return dispatch(
             upvoteReview({
                 upvotes: [...currentReview.upvotes, user.user.id],
                 id: currentReview.id
@@ -41,11 +51,20 @@ const ReviewDetails = () => {
     };
 
     const onClickDownvote = () => {
-        if (currentReview.downvotes.includes(user.user.id)) {
-            return alert('You have already downvoted this review!');
+        if (hasUpvoted()) {
+            return alert('You have already upvoted this review. To downvote, first un-upvote by clicking again.');
+        }
+        if (hasDownvoted()) {
+            return dispatch(
+                downvoteReview({
+                    downvotes: [...currentReview.downvotes.filter((id) => id != user.user.id)],
+                    id: currentReview.id
+                })
+            )
+                .then(() => setCurrentReview({ ...currentReview, downvotes: [...currentReview.downvotes.filter((id) => id != user.user.id)] }));
         }
 
-        dispatch(
+        return dispatch(
             downvoteReview({
                 downvotes: [...currentReview.downvotes, user.user.id],
                 id: currentReview.id
@@ -110,13 +129,14 @@ const ReviewDetails = () => {
                                     <strong
                                         className="review-details-actions-upvote"
                                         onClick={onClickUpvote}>
-                                        👍
+                                        {hasUpvoted() ? <span className='green-thumb'>👍</span> : <span>👍</span>}
                                     </strong>
 
                                     <strong
                                         className="review-details-actions-downvote"
                                         onClick={onClickDownvote}>
-                                        👎
+                                        {hasDownvoted() ? <span className='red-thumb'>👎</span> : <span>👎</span>}
+
                                     </strong>
                                 </div>
                             </div>

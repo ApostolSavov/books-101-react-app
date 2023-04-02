@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import "./App.scss";
 
@@ -12,10 +12,6 @@ import AddReview from "./pages/AddReview/AddReview";
 import EditReview from "./pages/EditReview/EditReview";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
-import Profile from "./pages/Profile/Profile";
-import ReadList from "./pages/ReadList/ReadList";
-import Favourites from "./pages/Favourites/Favourites";
-import Completed from "./pages/Completed/Completed";
 import AuthGuard from "utils/guards/AuthGuard";
 
 function App() {
@@ -54,15 +50,7 @@ function App() {
 
           <Route path="/register" element={<Register />} />
 
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="/profile/readlist" element={<ReadList />} />
-
-          <Route path="/profile/favourites" element={<Favourites />} />
-
-          <Route path="/profile/completed" element={<Completed />} />
-
-          <Route path="/profile/my-reviews" element={<Reviews byUser />} />
+          <Route path="/profile/:id" element={<Reviews byUser />} />
         </Routes>
       </div >
 

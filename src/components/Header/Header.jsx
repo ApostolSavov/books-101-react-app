@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import MenuBook from "../../assets/MenuBook.svg";
 import useIsAuth from "../../utils/hooks/useIsAuth";
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../slices/user";
 
 import Drawer from 'react-modern-drawer';
@@ -18,6 +18,8 @@ const Header = () => {
     const dispatch = useDispatch();
     const size = useWindowSize();
     const isAuth = useIsAuth();
+
+    const { user } = useSelector(({ user }) => user);
 
     const [isOpen, setIsOpen] = useState(false);
     const toggleDrawer = () => {
@@ -70,7 +72,7 @@ const Header = () => {
                                     {isAuth && (
                                         <>
                                             <li className="header__nav-item">
-                                                <Link className="header__nav-link" to="/profile">My Books</Link>
+                                                <Link className="header__nav-link" to="/profile">My Reviews</Link>
                                             </li>
                                             <li className="header__nav-item">
                                                 <Link className="header__nav-link" onClick={onLogout} to="/catalog">Logout</Link>
@@ -117,7 +119,7 @@ const Header = () => {
                             {isAuth && (
                                 <>
                                     <li className="header__nav-item">
-                                        <Link className="header__nav-link" to="/profile">My Books</Link>
+                                        <Link className="header__nav-link" to={`/profile/${user.user.id}`}>My Reviews</Link>
                                     </li>
                                     <li className="header__nav-item">
                                         <Link className="header__nav-link" onClick={onLogout} to="/catalog">Logout</Link>

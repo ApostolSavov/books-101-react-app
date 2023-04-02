@@ -44,3 +44,11 @@
     }
 
 }
+
+.green-thumb {
+    filter: hue-rotate(45deg) brightness(0.8) saturate(2);
+}
+
+.red-thumb {
+    filter: hue-rotate(322deg) saturate(5) brightness(0.95);
+}
