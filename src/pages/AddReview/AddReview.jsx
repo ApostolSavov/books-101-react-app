@@ -18,12 +18,12 @@ const AddReview = () => {
         initialValues: {
             title: '',
             content: '',
-            rating: 1
+            rating: '1'
         },
         validationSchema: Yup.object({
-            title: Yup.string().required(),
-            content: Yup.string().required(),
-            rating: Yup.number().required(),
+            title: Yup.string().min(10, 'Title should be at least 10 characters long.').required(),
+            content: Yup.string().min(100, 'Content should be at least 100 characters long.').required(),
+            rating: Yup.string().required(),
         }),
         onSubmit: (values) => {
             const reviewData = {
@@ -98,11 +98,11 @@ const AddReview = () => {
                             value={formik.values.rating}
                             className='form-input'
                         >
-                            <option value={1} >1</option>
-                            <option value={2} >2</option>
-                            <option value={3} >3</option>
-                            <option value={4} >4</option>
-                            <option value={5} >5</option>
+                            <option value={'1'} >1</option>
+                            <option value={'2'} >2</option>
+                            <option value={'3'} >3</option>
+                            <option value={'4'} >4</option>
+                            <option value={'5'} >5</option>
                         </select>
                     </div>
 

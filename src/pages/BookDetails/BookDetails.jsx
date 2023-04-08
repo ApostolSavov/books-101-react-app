@@ -51,12 +51,15 @@ const BookDetailsPage = () => {
                 <>
                     <div className='book-details-cta-container'>
 
-                        <AddReviewCta
-                            noAuth={!user}
-                            noReview={!existingReviewId}
-                            bookId={id}
-                            reviewId={existingReviewId}
-                        />
+                        {isLoaded && reviewsLoaded && (
+
+                            <AddReviewCta
+                                noAuth={!user}
+                                noReview={!existingReviewId}
+                                bookId={id}
+                                reviewId={existingReviewId}
+                            />
+                        )}
 
                     </div>
 
