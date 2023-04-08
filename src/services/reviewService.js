@@ -26,12 +26,12 @@ const deleteReview = (id) => {
 
 const upvoteReview = ({ upvotes, id }) => {
 
-    return http.patch(`/reviews/${id}`, { upvotes });
+    return http.patch(`/reviews/${id}/vote`, { upvotes });
 };
 
 const downvoteReview = ({ downvotes, id }) => {
 
-    return http.patch(`/reviews/${id}`, { downvotes });
+    return http.patch(`/reviews/${id}/vote`, { downvotes });
 };
 
 const reviewService = {

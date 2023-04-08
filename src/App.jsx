@@ -13,6 +13,7 @@ import EditReview from "./pages/EditReview/EditReview";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import AuthGuard from "utils/guards/AuthGuard";
+import About from "pages/About/About";
 
 function App() {
 
@@ -51,6 +52,8 @@ function App() {
           <Route path="/register" element={<Register />} />
 
           <Route path="/profile/:id" element={<Reviews byUser />} />
+
+          <Route path="/about" element={<About />} />
         </Routes>
       </div >
 
