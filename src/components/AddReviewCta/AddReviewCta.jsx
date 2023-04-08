@@ -18,11 +18,11 @@ const AddReviewCta = (props) => {
             {noAuth && (
                 <div className='vertical-btn-container'>
                     <Link to={`/register`}>
-                        <div>Register</div>
+                        <div className='bolder'>Register</div>
                     </Link>
                     Or
                     <Link to={`/login`}>
-                        <div>Login</div>
+                        <div className='bolder'>Login</div>
                     </Link>
                     To Review
                 </div>
@@ -30,14 +30,14 @@ const AddReviewCta = (props) => {
 
             {noReview && !noAuth && (
                 <Link to={`/catalog/${bookId}/add-review`}>
-                    <div>Add Review</div>
+                    <div className='bolder'>Add Review</div>
                 </Link>
             )}
 
             {!noReview && !noAuth && (
 
                 <Link to={`/reviews/${reviewId}`}>
-                    <div>Go To My Review</div>
+                    <div className='bolder'>Go To My Review</div>
                 </Link>
             )}
 

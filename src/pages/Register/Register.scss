@@ -17,6 +17,11 @@
         padding: 10px;
         align-self: end;
         color: white;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: $primary-color-darkest;
+        }
     }
 
     &-input {
@@ -24,5 +29,7 @@
         padding: 1rem;
         border: none;
         min-height: 4rem;
+        border: $primary-color-normal 0.5rem solid;
+
     }
 }

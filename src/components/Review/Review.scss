@@ -54,6 +54,12 @@
         background-color: $primary-color-normal;
         width: 100%;
         line-height: 2rem;
+        transition: all 0.3s;
+
+        &:hover {
+            background-color: $primary-color-darkest;
+            color: white;
+        }
 
     }
 }

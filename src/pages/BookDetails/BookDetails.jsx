@@ -97,13 +97,20 @@ const BookDetailsPage = () => {
                         <div className='book-details-links-container'>
 
                             <div className="book-details-wiki-link">
-                                <a href={currentBook.link} target={'_blank'}>
+                                <a
+                                    href={currentBook.link}
+                                    target={'_blank'}
+                                    className='bolder'
+                                >
                                     Go to Wiki page
                                 </a>
                             </div>
 
                             <div className="book-details-see-reviews-btn">
-                                <Link to={`/catalog/${currentBook.id}/reviews`}>
+                                <Link
+                                    to={`/catalog/${currentBook.id}/reviews`}
+                                    className='bolder'
+                                >
                                     See reviews
                                 </Link>
                             </div>

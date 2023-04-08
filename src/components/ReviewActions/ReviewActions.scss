@@ -11,11 +11,22 @@
     background-color: $primary-color-dark;
     color: white;
     cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: $primary-color-darkest;
+
+    }
 }
 
 .review-delete {
     padding: 2rem;
-    background-color: $primary-color-darkest;
+    background-color: darkred;
     color: white;
     cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+        background-color: rgb(62, 0, 0);
+    }
 }

@@ -21,7 +21,7 @@ export const register = createAsyncThunk(
 );
 
 let persistedUser = localStorage.getItem('user');
-if (persistedUser !== '') {
+if (persistedUser === 'undefined') {
     localStorage.setItem('user', '');
     persistedUser = '';
 }

@@ -22,8 +22,13 @@
     &-input {
         appearance: none;
         padding: 1rem;
-        border: none;
+        border: $primary-color-normal 0.5rem solid;
         min-height: 4rem;
+        transition: all 0.3s;
+
+        &:focus {
+            box-shadow: 0px 0px 0px 5px rgba(0, 0, 0, 0.5) inset;
+        }
     }
 }
 

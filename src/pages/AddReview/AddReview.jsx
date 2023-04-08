@@ -10,7 +10,7 @@ const AddReview = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
-    const { isLoaded, error } = useSelector(({ reviews }) => reviews);
+    const { list, error } = useSelector(({ reviews }) => reviews);
     const { user } = useSelector(({ user }) => user);
 
 
@@ -43,7 +43,7 @@ const AddReview = () => {
 
     return (
         <div className='add-review-page'>
-            {!isLoaded && (
+            {!list && (
                 <Spinner />
             )}
 
@@ -54,7 +54,7 @@ const AddReview = () => {
                 </div>
             )}
 
-            {isLoaded && (
+            {list && (
 
                 <form onSubmit={formik.handleSubmit} className='form'>
 
