@@ -5,6 +5,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { getAllReviews, editReview } from 'slices/review';
 import './EditReview.scss';
 import { useState, useEffect } from 'react';
+import Spinner from 'utils/Spinner/Spinner';
+
 
 const EditReview = () => {
 
@@ -12,7 +14,6 @@ const EditReview = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const { list, isLoaded, error } = useSelector(({ reviews }) => reviews);
-    const { user, isLoaded: userLoaded, error: userError } = useSelector(({ user }) => user);
 
     const [currentReview, setCurrentReview] = useState({});
 
@@ -23,11 +24,6 @@ const EditReview = () => {
             dispatch(getAllReviews({}));
         }
     }, [list]);
-
-    const loaders = [isLoaded, userLoaded,];
-    const errors = [error, userError];
-
-    console.log(currentReview);
 
     const formik = useFormik({
         initialValues: {
@@ -56,64 +52,77 @@ const EditReview = () => {
     return (
         <div className='add-review-page'>
 
-            <form onSubmit={formik.handleSubmit} className='form'>
+            {!isLoaded && (
+                <Spinner />
+            )}
 
-                <div className='form-input-wrapper'>
-                    <label htmlFor={'title'}>
-                        Title
-                    </label>
-                    <input
-                        id='title'
-                        name='title'
-                        type='text'
-                        onChange={formik.handleChange}
-                        value={formik.values.title}
-                        className='form-input'
-                    />
-                    {formik.errors.title && <p className='error-text'>{formik.errors.title}</p>}
+
+            {error && (
+                <div className="generic-centering-wrapper">
+                    <h2>Error: {error}</h2>
                 </div>
+            )}
 
-                <div className='form-input-wrapper'>
-                    <label htmlFor={'content'}>
-                        Content
-                    </label>
-                    <textarea
-                        id='content'
-                        name='content'
-                        onChange={formik.handleChange}
-                        value={formik.values.content}
-                        className='form-input text-area'
-                    />
-                    {formik.errors.content && <p className='error-text'>{formik.errors.content}</p>}
-                </div>
+            {isLoaded && (
+                <form onSubmit={formik.handleSubmit} className='form'>
 
-                <div className='form-input-wrapper'>
-                    <label htmlFor={'rating'}>
-                        Rating
-                    </label>
-                    <select
-                        id='rating'
-                        name='rating'
-                        onChange={formik.handleChange}
-                        value={formik.values.rating}
-                        className='form-input'
+                    <div className='form-input-wrapper'>
+                        <label htmlFor={'title'}>
+                            Title
+                        </label>
+                        <input
+                            id='title'
+                            name='title'
+                            type='text'
+                            onChange={formik.handleChange}
+                            value={formik.values.title}
+                            className='form-input'
+                        />
+                        {formik.errors.title && <p className='error-text'>{formik.errors.title}</p>}
+                    </div>
+
+                    <div className='form-input-wrapper'>
+                        <label htmlFor={'content'}>
+                            Content
+                        </label>
+                        <textarea
+                            id='content'
+                            name='content'
+                            onChange={formik.handleChange}
+                            value={formik.values.content}
+                            className='form-input text-area'
+                        />
+                        {formik.errors.content && <p className='error-text'>{formik.errors.content}</p>}
+                    </div>
+
+                    <div className='form-input-wrapper'>
+                        <label htmlFor={'rating'}>
+                            Rating
+                        </label>
+                        <select
+                            id='rating'
+                            name='rating'
+                            onChange={formik.handleChange}
+                            value={formik.values.rating}
+                            className='form-input'
+                        >
+                            <option value={1} >1</option>
+                            <option value={2} >2</option>
+                            <option value={3} >3</option>
+                            <option value={4} >4</option>
+                            <option value={5} >5</option>
+                        </select>
+                    </div>
+
+                    <button
+                        type='submit'
+                        className='form-submit-btn'
                     >
-                        <option value={1} >1</option>
-                        <option value={2} >2</option>
-                        <option value={3} >3</option>
-                        <option value={4} >4</option>
-                        <option value={5} >5</option>
-                    </select>
-                </div>
+                        Edit
+                    </button>
 
-                <button
-                    type='submit'
-                    className='form-submit-btn'
-                >
-                    Edit
-                </button>
-
-            </form>
+                </form>
+            )}
 
         </div>
     );

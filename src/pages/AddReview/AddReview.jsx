@@ -4,16 +4,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import './AddReview.scss';
 import { postReview } from 'slices/review';
+import Spinner from 'utils/Spinner/Spinner';
 
 const AddReview = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
-    const { list, isLoaded, error } = useSelector(({ reviews }) => reviews);
-    const { user, isLoaded: userLoaded, error: userError } = useSelector(({ user }) => user);
+    const { isLoaded, error } = useSelector(({ reviews }) => reviews);
+    const { user } = useSelector(({ user }) => user);
 
-    const loaders = [isLoaded, userLoaded,];
-    const errors = [error, userError,];
 
     const formik = useFormik({
         initialValues: {
@@ -37,72 +36,86 @@ const AddReview = () => {
             dispatch(
                 postReview(reviewData)
             )
-                .then(() => navigate('/reviews'));
+                .then(() => navigate('/reviews'))
+                .catch((err) => alert(err));
         }
     });
 
     return (
         <div className='add-review-page'>
+            {!isLoaded && (
+                <Spinner />
+            )}
 
-            <form onSubmit={formik.handleSubmit} className='form'>
 
-                <div className='form-input-wrapper'>
-                    <label htmlFor={'title'}>
-                        Title
-                    </label>
-                    <input
-                        id='title'
-                        name='title'
-                        type='text'
-                        onChange={formik.handleChange}
-                        value={formik.values.title}
-                        className='form-input'
-                    />
-                    {formik.errors.title && <p className='error-text'>{formik.errors.title}</p>}
+            {error && (
+                <div className="generic-centering-wrapper">
+                    <h2>Error: {error}</h2>
                 </div>
+            )}
 
-                <div className='form-input-wrapper'>
-                    <label htmlFor={'content'}>
-                        Content
-                    </label>
-                    <textarea
-                        id='content'
-                        name='content'
-                        onChange={formik.handleChange}
-                        value={formik.values.content}
-                        className='form-input'
-                    />
-                    {formik.errors.content && <p className='error-text'>{formik.errors.content}</p>}
-                </div>
+            {isLoaded && (
 
-                <div className='form-input-wrapper'>
-                    <label htmlFor={'rating'}>
-                        Rating
-                    </label>
-                    <select
-                        id='rating'
-                        name='rating'
-                        onChange={formik.handleChange}
-                        value={formik.values.rating}
-                        className='form-input'
+                <form onSubmit={formik.handleSubmit} className='form'>
+
+                    <div className='form-input-wrapper'>
+                        <label htmlFor={'title'}>
+                            Title
+                        </label>
+                        <input
+                            id='title'
+                            name='title'
+                            type='text'
+                            onChange={formik.handleChange}
+                            value={formik.values.title}
+                            className='form-input'
+                        />
+                        {formik.errors.title && <p className='error-text'>{formik.errors.title}</p>}
+                    </div>
+
+                    <div className='form-input-wrapper'>
+                        <label htmlFor={'content'}>
+                            Content
+                        </label>
+                        <textarea
+                            id='content'
+                            name='content'
+                            onChange={formik.handleChange}
+                            value={formik.values.content}
+                            className='form-input'
+                        />
+                        {formik.errors.content && <p className='error-text'>{formik.errors.content}</p>}
+                    </div>
+
+                    <div className='form-input-wrapper'>
+                        <label htmlFor={'rating'}>
+                            Rating
+                        </label>
+                        <select
+                            id='rating'
+                            name='rating'
+                            onChange={formik.handleChange}
+                            value={formik.values.rating}
+                            className='form-input'
+                        >
+                            <option value={1} >1</option>
+                            <option value={2} >2</option>
+                            <option value={3} >3</option>
+                            <option value={4} >4</option>
+                            <option value={5} >5</option>
+                        </select>
+                    </div>
+
+                    <button
+                        type='submit'
+                        className='form-submit-btn'
                     >
-                        <option value={1} >1</option>
-                        <option value={2} >2</option>
-                        <option value={3} >3</option>
-                        <option value={4} >4</option>
-                        <option value={5} >5</option>
-                    </select>
-                </div>
+                        Post
+                    </button>
 
-                <button
-                    type='submit'
-                    className='form-submit-btn'
-                >
-                    Post
-                </button>
+                </form>
 
-            </form>
-
+            )}
         </div>
     );
 };

@@ -10,15 +10,12 @@ import Spinner from 'utils/Spinner/Spinner';
 
 const BookDetailsPage = () => {
     //add async hook that takes array of loaded, errors
-    const { collection, isLoaded, error } = useSelector(({ books }) => books);
+    const { collection, isLoaded } = useSelector(({ books }) => books);
     const { list, isLoaded: reviewsLoaded, error: reviewsError } = useSelector(({ reviews }) => reviews);
-    const { user, isLoaded: userLoaded, error: userError } = useSelector(({ user }) => user);
+    const { user } = useSelector(({ user }) => user);
     const [currentBook, setCurrentBook] = useState({});
     const { id } = useParams();
     const dispatch = useDispatch();
-
-    const loaders = [isLoaded, reviewsLoaded];
-    const errors = [error, reviewsError];
 
 
     useEffect(() => {
@@ -42,7 +39,14 @@ const BookDetailsPage = () => {
                 </div>
             )}
 
-            {loaders.every(Boolean) && !errors.some(Boolean) && (
+            {reviewsError && (
+                <div className="generic-centering-wrapper">
+                    <h2>Error: {reviewsError}</h2>
+                </div>
+            )}
+
+
+            {isLoaded && reviewsLoaded && (
 
                 <>
                     <div className='book-details-cta-container'>

@@ -25,3 +25,5 @@ Reviews (view, add, edit, delete) - relation with books and users collection
 
 # Static collection:
 Books (view)
+
+# For local testing change BE url in common.js

@@ -18,6 +18,7 @@ const Reviews = (props) => {
     const dispatch = useDispatch();
 
     const { list, isLoaded, error } = useSelector(({ reviews }) => reviews);
+    const { user } = useSelector(({ user }) => user);
 
     useEffect(() => {
         const { id } = params;
@@ -41,6 +42,12 @@ const Reviews = (props) => {
 
     return (
         <div className='reviews-page'>
+
+            {byUser && user && (
+                <div className='generic-centering-wrapper username-badge'>
+                    Currently logged as:&nbsp;<strong>{user?.user?.username}</strong>
+                </div>
+            )}
 
             {!isLoaded && (
                 <div className="generic-centering-wrapper">

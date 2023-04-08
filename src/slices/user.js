@@ -20,7 +20,11 @@ export const register = createAsyncThunk(
     }
 );
 
-const persistedUser = localStorage.getItem('user');
+let persistedUser = localStorage.getItem('user');
+if (persistedUser !== '') {
+    localStorage.setItem('user', '');
+    persistedUser = '';
+}
 const initialUser = persistedUser ? JSON.parse(persistedUser) : null;
 
 const initialState = { user: initialUser, isLoaded: initialUser ? true : false, error: null };

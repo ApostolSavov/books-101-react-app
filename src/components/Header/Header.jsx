@@ -119,7 +119,7 @@ const Header = () => {
                             {isAuth && (
                                 <>
                                     <li className="header__nav-item">
-                                        <Link className="header__nav-link" to={`/profile/${user.user.id}`}>My Reviews</Link>
+                                        <Link className="header__nav-link" to={`/profile/${user?.user?.id}`}>My Reviews</Link>
                                     </li>
                                     <li className="header__nav-item">
                                         <Link className="header__nav-link" onClick={onLogout} to="/catalog">Logout</Link>
