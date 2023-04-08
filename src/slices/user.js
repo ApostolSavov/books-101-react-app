@@ -4,8 +4,7 @@ import userService from "../services/userService";
 
 export const login = createAsyncThunk(
     'user/login',
-    (values, secondArg) => {
-        console.log({ values, secondArg });
+    (values) => {
         return userService.login(values)
             .then(({ data }) => data)
             .catch(({ error }) => error);
@@ -51,9 +50,9 @@ const userSlice = createSlice({
             state.user = action.payload;
             localStorage.setItem('user', JSON.stringify(action.payload));
         },
-        [register.fulfilled]: (state, action) => {
+        [register.rejected]: (state, action) => {
             state.isLoaded = true;
-            state.user = action.payload;
+            state.error = action.payload;
         },
     }
 });

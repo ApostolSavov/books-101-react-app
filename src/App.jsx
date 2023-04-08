@@ -51,7 +51,11 @@ function App() {
 
           <Route path="/register" element={<Register />} />
 
-          <Route path="/profile/:id" element={<Reviews byUser />} />
+          <Route path="/profile/:id" element={(
+            <AuthGuard>
+              <Reviews byUser />
+            </AuthGuard>
+          )} />
 
           <Route path="/about" element={<About />} />
         </Routes>

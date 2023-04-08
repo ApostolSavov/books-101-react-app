@@ -82,6 +82,7 @@ const ReviewDetails = () => {
                 </div>
             )}
 
+
             {isLoaded && !error && (
                 <>
                     <div className="review-details-card">

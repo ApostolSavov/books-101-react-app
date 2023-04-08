@@ -1,4 +1,4 @@
-# Softuni React Course Project - work in progress
+# Softuni React Course Project - 📚📚📚
 
 # Explore here: https://books-101-react-app.vercel.app/
 

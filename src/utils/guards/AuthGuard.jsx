@@ -14,7 +14,7 @@ const AuthGuard = (props) => {
         return (<>{children}</>);
     }
 
-    return (<div>No found or requires authentication</div>);
+    return (<div>Not found or requires authentication</div>);
 };
 
 

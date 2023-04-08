@@ -1,10 +1,8 @@
 import './Register.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import emailService from '../../utils/helpers/emailService';
-import userService from '../../services/userService';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { register } from 'slices/user';
 
 

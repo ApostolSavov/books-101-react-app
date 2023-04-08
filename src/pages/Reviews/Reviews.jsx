@@ -22,7 +22,6 @@ const Reviews = (props) => {
     useEffect(() => {
         const { id } = params;
 
-
         if (byBook) {
             dispatch(
                 getAllReviews({ bookId: id })

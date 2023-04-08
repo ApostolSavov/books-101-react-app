@@ -1,11 +1,9 @@
 import './Login.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import emailService from '../../utils/helpers/emailService';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "../../slices/user";
-import { useEffect } from 'react';
 
 
 const Login = () => {
