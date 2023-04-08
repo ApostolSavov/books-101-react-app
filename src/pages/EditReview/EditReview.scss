@@ -1,5 +1,13 @@
 .add-review-page {
     min-width: 32rem;
+    width: 100%;
+
+    .form {
+        min-width: 32rem;
+        max-width: 52rem;
+        width: 60%;
+        margin: auto;
+    }
 }
 
 .form-input.text-area {
