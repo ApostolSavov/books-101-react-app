@@ -8,8 +8,6 @@ const Review = (props) => {
         review
     } = props;
 
-    console.log({ review });
-
 
     return (
         <div className='review'>

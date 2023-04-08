@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { deleteReview, getAllReviews } from 'slices/review';
-import Spinner from 'utils/Spinner/Spinner';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { deleteReview } from 'slices/review';
 import './ReviewActions.scss';
 
 
