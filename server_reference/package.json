@@ -1,0 +1,26 @@
+{
+  "name": "books-json-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server --watch -p 4000 db.json ",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ApostolSavov/books-json-server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ApostolSavov/books-json-server/issues"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "json-server": "^0.17.0",
+    "json-server-auth": "^2.1.0"
+  },
+  "homepage": "https://github.com/ApostolSavov/books-json-server#readme"
+}

@@ -1,0 +1,6 @@
+json server auth
+
+
+[first digit] = owner       [second digit] = logged user        [third digit] = public user
+
+6 = read + write        4 = read        2 = write       0 = no permission
